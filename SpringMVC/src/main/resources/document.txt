@@ -254,6 +254,47 @@ The same with byType
 		  %>
 		  <%= sum %>							
 
+===================================================================================================================
 
+												LESSION 11
+
+Guide using display list data on page jsp
+
+b1.	add Dependency jstl:
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>	
+b2: Add list data in modelMap
+		@RequestMapping("/")
+		public String home(ModelMap modeMap) {
+			modeMap.addAttribute("listNhanVien", createListNhanVien());
+			return "index";
+		}
+		
+		private static List<NhanVien> createListNhanVien(){
+			List<NhanVien> listNhanVien = new ArrayList<NhanVien>();
+			listNhanVien.add(new NhanVien(0203, "Dat"));
+			listNhanVien.add(new NhanVien(2711, "Yen"));	
+			return listNhanVien;
+		}	
+b3: 
+	- In page jsp add jstl:
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>		
+	- import list: 
+		<%@ page import="java.util.List"%>
+	- import entity we are using:
+		<%@ page import="vn.com.spring.entity.NhanVien"%>
+b4: Using <c:forEach for display list data
+	<c:forEach var="listNhanVien" items="${listNhanVien}">
+		<tr>
+			<td><c:out value="${listNhanVien.getName()}" /></td>
+			<td><c:out value="${listNhanVien.getId()}" /></td>
+		</tr>
+		<br>
+	</c:forEach>
+
+					
 
 
