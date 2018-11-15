@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1>Spring MVC Hello World!</h1>
-  <a href="hello">hello</a>
+  <h3>${id}</h3>
+  <a href="index">hello</a>
 </body>
 </html>
