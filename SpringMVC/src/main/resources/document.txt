@@ -204,8 +204,55 @@ The same with byType
 					}
 				}
 
-																		
-												
+===============================================================================================================
+
+											LESSION 10
+							
+1. Method controller return String or ModeAndView: 
+	- String return 1 view
+	- ModeAndView return 1 object + view corresponding
+2. Return data througth view
+	2.1: User ModeAndView
+		- When we are use ModeAndView we are need: 
+			.setViewName("name_view_it_return")
+			.addObject("name_use_on_view" ,Object_you_want_carried_away);
+		- return modeAndView
+		Example:
+			@RequestMapping("/")
+			public ModelAndView index() {
+				ModelAndView modelAndView = new ModelAndView();
+				modelAndView.setViewName("index");
+				String users ="User_Name";
+				modelAndView.addObject("tendangnhap", users);
+				return modelAndView;
+			}
+		In example view we are return is index. Object we are carried away is users. Variable use on 
+		view is "tendangnhap";
+		- Display variable on view: ${tendangnhap}
+		
+	2.2: User String method
+		- We are using Mode or ModeMap for send data on view
+		- return view
+		Example:
+			@RequestMapping("/home")
+			public String home(ModelMap modeMap) {
+				String users ="User_Method_String";
+				modeMap.addAttribute("tendangnhap", users);
+				int age = 18;
+				modeMap.addAttribute("ages", age);
+				return "index";
+			}
+		
+3. How to use variable server return view and hanlder data:
+	- We are use request.getAttribule("name_variable_server_return");	
+	- Example: 																					
+		  <h3>${tendangnhap}</h3>
+		  <%
+		  	int age = (Integer) request.getAttribute("ages");
+		  	int temp = 3;
+		  	int sum = age + temp;
+		  %>
+		  <%= sum %>							
 
 
 
