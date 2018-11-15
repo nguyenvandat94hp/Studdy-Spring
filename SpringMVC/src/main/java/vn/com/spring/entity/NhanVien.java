@@ -1,4 +1,4 @@
-package vn.com.spring.model;
+package vn.com.spring.entity;
 
 import javax.persistence.Entity;
 
@@ -41,5 +41,9 @@ public class NhanVien {
 		this.id = id;
 		this.name = name;
 		this.location = location;
+	}
+	public String getInfomationEmployee() {
+		System.out.println(id + name + location);
+		return id + name + location;
 	}
 }
