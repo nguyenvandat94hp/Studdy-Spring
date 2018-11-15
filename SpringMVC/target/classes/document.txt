@@ -1,0 +1,9 @@
+when file config-spring.xml load done init-method created first. destroy-method run when close connect.
+
+
+		
+		   <bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">
+		   		<property name="name" value="CUONG"></property>
+		   		<property name="id" value="1"></property>
+		   		<property name="location" value="CUONG"></property>
+		  </bean>
