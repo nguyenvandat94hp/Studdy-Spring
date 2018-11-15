@@ -1,3 +1,5 @@
+											LESSION 3
+											
 when file config-spring.xml load done init-method created first. destroy-method run when close connect.
 
 		   <bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">
@@ -12,3 +14,48 @@ factory-method and factory-bean:
 if use single factory-method then use method static
 
 bean always return 1 class
+
+========================================================================================================
+
+											LESSION 4
+1.											
+	Use constructor default is no argumment
+	Use constructor have argumment
+			   <bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">
+			   		<constructor-arg value="18"></constructor-arg>
+			   		<constructor-arg value="Nguyen Van Dat"></constructor-arg> 		
+			  </bean>
+	
+	You want use constructor have argumment then first you need defind the constructor have argumment corresponding(tương ứng).
+2.
+	Create new 1 entity is GiamDoc extends from NhanVien
+	Add GiamDoc is a field of NhanVien follow relationship is-a.
+	property: ref="" use referent from object is field of class
+	
+		<bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">
+		   		<constructor-arg value="18"></constructor-arg>
+		   		<constructor-arg value="Nguyen Van Dat"></constructor-arg> 	
+		   		<constructor-arg ref="giamDoc"></constructor-arg>	
+		  </bean>
+		  
+		  <bean name="giamDoc" class="vn.com.spring.entity.GiamDoc">
+		 	 <constructor-arg value="Giam Doc"></constructor-arg>
+		  </bean>
+
+3.		  
+	if we are want defind type data we are need use type in bean:
+		
+		 <bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">
+	   		<constructor-arg type="int" value="18"></constructor-arg>
+	   		<constructor-arg value="Nguyen Van Dat"></constructor-arg> 	
+	   		<constructor-arg ref="giamDoc"></constructor-arg>	
+	  	</bean>
+4. 
+	If we are want to specify name for the field of object then we are use property name:
+		<bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">
+	   		<constructor-arg name="id" type="int" value="18"></constructor-arg>
+	   		<constructor-arg value="Nguyen Van Dat"></constructor-arg> 	
+	   		<constructor-arg ref="giamDoc"></constructor-arg>	
+	  	</bean>
+
+	
