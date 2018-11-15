@@ -9,6 +9,7 @@
 <body>
   <h1>Spring MVC Hello World!</h1>
   <h3>${id}</h3>
+  <h3>${name}</h3>
   <a href="index">hello</a>
 </body>
 </html>
