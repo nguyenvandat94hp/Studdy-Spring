@@ -109,6 +109,24 @@ bean always return 1 class
 			   		</property>
 			  </bean>
 
+==========================================================================================================
 
+											LESSION 6
+1.
+	Guide use assign field data is Map
+	
+		b1:Create new field data is map in entity:
+		public class NhanVien {
+			.....
+			private Map<String, Object> map;
+		}
+		
+		b2: Assign data for field map in xml
+		   		<property name="map">
+		   			<map>
+		   				<entry key="Map 1" value="Map 1 nhe"></entry>
+		   				<entry key="Map 2" value-ref="giamDoc"></entry>
+		   			</map>
+		   		</property>
 
 
