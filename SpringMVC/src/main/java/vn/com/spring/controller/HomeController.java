@@ -16,8 +16,8 @@ public class HomeController {
 	public String index() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("config-spring.xml");
 		NhanVien nhanVien = (NhanVien) context.getBean("nhanVien");
+		String display = nhanVien.getInfomationEmployee() + context.toString();
 		nhanVien.getInfomationEmployee();
-
-		return "home";
+		return display;
 	}
 }
