@@ -179,6 +179,32 @@ The same with byType
 					}
 				}
 		- File index.jsp in folder webapp
+		
+===============================================================================================================
+
+											LESSION 9
+																				
+1. Divide folder container views display jsp
+	b1. 
+		- Create folder views in WE-INF
+		- Folder views container all file jsp display		
+	b2. 
+		Config loading file:
+			- Change file spring-mvn-servlet.xml by add new bean
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/WEB-INF/views/" />
+					<property name="suffix" value=".jsp" />
+				</bean>	
+			- Change data type return of file HomeController	:
+				@Controller
+				public class HomeController {		
+					@RequestMapping("/")
+					public String index() {		
+						return "index";
+					}
+				}
+
+																		
 												
 
 
