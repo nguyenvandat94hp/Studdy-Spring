@@ -149,6 +149,38 @@ then it auto map and inject data.
 
 The same with byType
 
+==========================================================================================================
+
+											LESSION 8
+
+1. Why not need content website?
+	Using jsp for display item html.
+2. Vòng đời của file jsp?
+	Client request tới file jsp => Jsp translator sẽ biên dịch file jsp thành file java.servlet rồi biên dịch thành file .java
+	Lúc này file jsp mới chính thức chạy. Hàm get hàm post thông qua jspService
+3. Example 
+	3.1 Config servlet in file web.xml:
+		- Config DispatcherServlet:
+			<servlet-name>spring-mvc</servlet-name>
+			<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+			
+		- Config servlet-mapping:
+			<servlet-mapping>
+				<servlet-name>spring-mvc</servlet-name>
+				<url-pattern>/</url-pattern>
+			</servlet-mapping>
+
+		- Code file HomeController:
+				@Controller
+				public class HomeController {				
+					@RequestMapping("/")
+					public String index() {				
+						return "index.jsp";
+					}
+				}
+		- File index.jsp in folder webapp
+												
+
 
 
 
