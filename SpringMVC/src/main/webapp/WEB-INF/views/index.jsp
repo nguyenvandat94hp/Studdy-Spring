@@ -9,5 +9,13 @@
 <body>
   <h1>Spring MVC Hello World!</h1>
   <a href="hello">hello</a>
+  <h3>${tendangnhap}</h3>
+  
+  <%
+  	int age = (Integer) request.getAttribute("ages");
+  	int temp = 3;
+  	int sum = age + temp;
+  %>
+  <%= sum %>
 </body>
 </html>
