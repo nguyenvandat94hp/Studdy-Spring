@@ -1,10 +1,30 @@
 package vn.com.spring.entity;
 
+import java.util.List;
+
 public class NhanVien {
 	private int id;
 	private String name;
 	private String location;
 	private GiamDoc giamDoc;
+	private List<String> list;
+	private List<GiamDoc> giamDocs;
+
+	public List<GiamDoc> getGiamDocs() {
+		return giamDocs;
+	}
+
+	public void setGiamDocs(List<GiamDoc> giamDocs) {
+		this.giamDocs = giamDocs;
+	}
+
+	public List<String> getList() {
+		return list;
+	}
+
+	public void setList(List<String> list) {
+		this.list = list;
+	}
 
 	public NhanVien(int id, String name, GiamDoc giamDoc) {
 		super();
