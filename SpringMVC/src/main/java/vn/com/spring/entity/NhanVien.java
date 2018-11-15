@@ -4,9 +4,36 @@ public class NhanVien {
 	private int id;
 	private String name;
 	private String location;
+	private GiamDoc giamDoc;
+
+	public NhanVien(int id, String name, GiamDoc giamDoc) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.giamDoc = giamDoc;
+	}
+
+	public NhanVien(GiamDoc giamDoc) {
+		super();
+		this.giamDoc = giamDoc;
+	}
+
+	public GiamDoc getGiamDoc() {
+		return giamDoc;
+	}
+
+	public void setGiamDoc(GiamDoc giamDoc) {
+		this.giamDoc = giamDoc;
+	}
 
 	public NhanVien() {
 		super();
+	}
+
+	public NhanVien(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
 	}
 
 	public NhanVien(int id, String name, String location) {
@@ -18,7 +45,7 @@ public class NhanVien {
 
 	public String getInfomationEmployee() {
 		System.out.println(id + name + location);
-		return id + name + location;
+		return id + name + location + giamDoc.toString();
 	}
 
 	public int getId() {
