@@ -17,8 +17,7 @@ public class HomeController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("config-spring.xml");
 		NhanVien nhanVien = (NhanVien) context.getBean("nhanVien");
 		String display = nhanVien.getInfomationEmployee() + context.toString() + nhanVien.getList().toString() + "\n"
-				+ nhanVien.getGiamDocs().toString();
-		nhanVien.getInfomationEmployee();
+				+ nhanVien.getGiamDocs().toString() + nhanVien.getMap().toString();
 		System.out.println(display);
 		return display;
 	}
