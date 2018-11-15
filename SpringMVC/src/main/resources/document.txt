@@ -300,7 +300,7 @@ b4: Using <c:forEach for display list data
 													LESSION 12
 
 - @RequestParam is away we are get value of variable on url
-- 400 Bad Request in send data througt url we are need using "?" and true data type
+- 400 Bad Request in send data through url we are need using "?" and true data type
 
 Example send request param and receive request
 
@@ -313,7 +313,21 @@ b2: receive param from client send to server
 			return "hello";
 		}
 
+==================================================================================================================
 
+													LESSION 13
+- @PathVariable is away inject data through url but safer
+- Example:
+	b1: <a href="hello/2/dat">hello</a>
+	b2:
+		@RequestMapping(value = "/hello/{id}/{name}", method = RequestMethod.GET)
+		public String hello(@PathVariable("id") int id, @PathVariable("name") String name, ModelMap modeMap) {
+			modeMap.addAttribute("id", id);
+			modeMap.addAttribute("name", name);
+			return "hello";
+		}	
+		
+Note: data type date we are inject : "27-11-2018"							
 
 
 
