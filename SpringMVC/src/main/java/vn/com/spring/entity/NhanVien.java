@@ -1,12 +1,25 @@
 package vn.com.spring.entity;
 
-import javax.persistence.Entity;
-
-@Entity
 public class NhanVien {
 	private int id;
 	private String name;
 	private String location;
+
+	public NhanVien() {
+		super();
+	}
+
+	public NhanVien(int id, String name, String location) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.location = location;
+	}
+
+	public String getInfomationEmployee() {
+		System.out.println(id + name + location);
+		return id + name + location;
+	}
 
 	public int getId() {
 		return id;
@@ -32,18 +45,4 @@ public class NhanVien {
 		this.location = location;
 	}
 
-	public NhanVien() {
-		super();
-	}
-
-	public NhanVien(int id, String name, String location) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.location = location;
-	}
-	public String getInfomationEmployee() {
-		System.out.println(id + name + location);
-		return id + name + location;
-	}
 }
