@@ -1,40 +1,10 @@
 package vn.com.spring.entity;
 
-import java.util.List;
-import java.util.Map;
-
 public class NhanVien {
 	private int id;
 	private String name;
 	private String location;
 	private GiamDoc giamDoc;
-	private List<String> list;
-	private List<GiamDoc> giamDocs;
-	private Map<String, Object> map;
-	
-	public Map<String, Object> getMap() {
-		return map;
-	}
-
-	public void setMap(Map<String, Object> map) {
-		this.map = map;
-	}
-
-	public List<GiamDoc> getGiamDocs() {
-		return giamDocs;
-	}
-
-	public void setGiamDocs(List<GiamDoc> giamDocs) {
-		this.giamDocs = giamDocs;
-	}
-
-	public List<String> getList() {
-		return list;
-	}
-
-	public void setList(List<String> list) {
-		this.list = list;
-	}
 
 	public NhanVien(int id, String name, GiamDoc giamDoc) {
 		super();

@@ -1,48 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-  
-   <bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">
-   		<constructor-arg name="id" type="int" value="18"></constructor-arg>
-   		<constructor-arg value="Nguyen Van Dat"></constructor-arg> 	
-   		<constructor-arg ref="giamDoc"></constructor-arg>	
-   		<property name="list">
-	   		<list>
-	   			<value>AN</value>
-	   			<value>Cuong</value>
-	   			<value>AN</value>
-	   			<value>AN</value>
-	   		</list>		
-   		</property>
-   		
-   		<property name="giamDocs">
-	   		<list>
-	   			<ref bean="giamDoc1"/>
-	   			<ref bean="giamDoc2"/>
-	   		</list>		
-   		</property>
-   		
-   		<property name="map">
-   			<map>
-   				<entry key="Map 1" value="Map 1 nhe"></entry>
-   				<entry key="Map 2" value-ref="giamDoc"></entry>
-   			</map>
-   		</property>
-  </bean>
-  
-  <bean name="giamDoc" class="vn.com.spring.entity.GiamDoc">
- 	 <constructor-arg value="Giam Doc"></constructor-arg>
-  </bean>
-  
-  <bean name="giamDoc1" class="vn.com.spring.entity.GiamDoc">
- 	 <constructor-arg value="Giam Doc 1"></constructor-arg>
-  </bean>
-  
-  <bean name="giamDoc2" class="vn.com.spring.entity.GiamDoc">
- 	 <constructor-arg value="Giam Doc 2"></constructor-arg>
-  </bean>
-  
-  
+
+	<bean name="nhanVien" class="vn.com.spring.entity.NhanVien" autowire="byType"></bean>
+	<bean name="giamDoc" class="vn.com.spring.entity.GiamDoc">
+		<constructor-arg value="Giam Doc"></constructor-arg>
+	</bean>
 </beans>
