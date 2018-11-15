@@ -10,15 +10,7 @@
 <title>index</title>
 </head>
 <body>
-	<h1>Spring MVC Hello World!</h1>
-	<a href="hello">hello</a>
-	<h3>List Data</h3>
-	<c:forEach var="listNhanVien" items="${listNhanVien}">
-		<tr>
-			<td><c:out value="${listNhanVien.getName()}" /></td>
-			<td><c:out value="${listNhanVien.getId()}" /></td>
-		</tr>
-		<br>
-	</c:forEach>
+	<h1>Spring MVC Index World!</h1>
+	<a href="hello?id=2">hello</a>
 </body>
 </html>
