@@ -129,4 +129,25 @@ bean always return 1 class
 		   			</map>
 		   		</property>
 
+=========================================================================================================
+
+											LESSION 7
+											
+Autowrite is mechanism(cơ chế) auto inject field data have property same same. If have 1 field data coincidence(trùng hợp) 
+then it auto map and inject data.
+	b1: Create field data have form after
+	public class NhanVien {
+		....
+		private GiamDoc giamDoc;
+	}
+	
+	b2: Use autowrite as after:
+		<bean name="nhanVien" class="vn.com.spring.entity.NhanVien" autowire="byType"></bean>
+			<bean name="giamDoc" class="vn.com.spring.entity.GiamDoc">
+				<constructor-arg value="Giam Doc"></constructor-arg>
+		</bean>
+
+
+
+
 
