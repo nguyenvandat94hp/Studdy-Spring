@@ -1,6 +1,7 @@
 package vn.com.spring.entity;
 
 import java.util.List;
+import java.util.Map;
 
 public class NhanVien {
 	private int id;
@@ -9,6 +10,15 @@ public class NhanVien {
 	private GiamDoc giamDoc;
 	private List<String> list;
 	private List<GiamDoc> giamDocs;
+	private Map<String, Object> map;
+	
+	public Map<String, Object> getMap() {
+		return map;
+	}
+
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
 
 	public List<GiamDoc> getGiamDocs() {
 		return giamDocs;
@@ -64,7 +74,6 @@ public class NhanVien {
 	}
 
 	public String getInfomationEmployee() {
-		System.out.println(id + name + location);
 		return id + name + location + giamDoc.toString();
 	}
 
