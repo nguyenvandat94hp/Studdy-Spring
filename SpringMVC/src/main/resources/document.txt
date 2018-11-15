@@ -295,6 +295,71 @@ b4: Using <c:forEach for display list data
 		<br>
 	</c:forEach>
 
+==================================================================================================================
+
+													LESSION 12
+
+- @RequestParam is away we are get value of variable on url
+- 400 Bad Request in send data througt url we are need using "?" and true data type
+
+Example send request param and receive request
+
+b1: send request param:
+	<a href="hello?id=2">hello</a>
+b2: receive param from client send to server
+		@RequestMapping(value = "/hello", method = RequestMethod.GET)
+		public String hello(@RequestParam(name = "id", required = true) int id, ModelMap modeMap) {
+			modeMap.addAttribute("id", id);
+			return "hello";
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+													
 					
 
 
