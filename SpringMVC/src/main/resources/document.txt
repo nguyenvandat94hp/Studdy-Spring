@@ -58,4 +58,57 @@ bean always return 1 class
 	   		<constructor-arg ref="giamDoc"></constructor-arg>	
 	  	</bean>
 
+============================================================================================================================
+
+											LESSION 5
+1.
+	Guide use property is filde list in object with data type is primary:
 	
+		b1. create field list in object;
+			public class NhanVien {
+				...
+				private List<String> list;
+			}
+		b2: Assign field data in file bean:
+				<property name="list">
+			   		<list>
+			   			<value>AN</value>
+			   			<value>Cuong</value>
+			   			<value>AN</value>
+			   			<value>AN</value>
+			   		</list>		
+		   		</property>
+
+2.
+
+	Guide use property is filde list in object with data type is Object:
+	
+		b1: Create field list object in entity:
+			public class NhanVien {
+				....
+				private List<GiamDoc> giamDocs;
+			}
+		
+		b2: create the bean object of list data in file bean xml
+			 <bean name="giamDoc1" class="vn.com.spring.entity.GiamDoc">
+			 	 <constructor-arg value="Giam Doc 1"></constructor-arg>
+			  </bean>
+			  
+			  <bean name="giamDoc2" class="vn.com.spring.entity.GiamDoc">
+			 	 <constructor-arg value="Giam Doc 2"></constructor-arg>
+			  </bean>
+		  
+		b3: Assign field data in file bean:
+			<bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">   		
+			   		....
+			   		<property name="giamDocs">
+				   		<list>
+				   			<ref bean="giamDoc1"/>
+				   			<ref bean="giamDoc2"/>
+				   		</list>		
+			   		</property>
+			  </bean>
+
+
+
+
