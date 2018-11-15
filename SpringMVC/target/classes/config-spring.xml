@@ -5,8 +5,14 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
   
    <bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">
-   		<property name="name" value="CUONG"></property>
-   		<property name="id" value="1"></property>
-   		<property name="location" value="CUONG"></property>
+   		<constructor-arg name="id" type="int" value="18"></constructor-arg>
+   		<constructor-arg value="Nguyen Van Dat"></constructor-arg> 	
+   		<constructor-arg ref="giamDoc"></constructor-arg>	
   </bean>
+  
+  <bean name="giamDoc" class="vn.com.spring.entity.GiamDoc">
+ 	 <constructor-arg value="Giam Doc"></constructor-arg>
+  </bean>
+  
+  
 </beans>
