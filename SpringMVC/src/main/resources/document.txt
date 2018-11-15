@@ -147,6 +147,7 @@ then it auto map and inject data.
 				<constructor-arg value="Giam Doc"></constructor-arg>
 		</bean>
 
+The same with byType
 
 
 

@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<bean name="nhanVien" class="vn.com.spring.entity.NhanVien" autowire="byType"></bean>
-	<bean name="giamDoc" class="vn.com.spring.entity.GiamDoc">
+	<bean name="giamDoc1" class="vn.com.spring.entity.GiamDoc">
 		<constructor-arg value="Giam Doc"></constructor-arg>
 	</bean>
 </beans>
