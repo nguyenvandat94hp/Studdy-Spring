@@ -11,6 +11,6 @@
 </head>
 <body>
 	<h1>Spring MVC Index World!</h1>
-	<a href="hello?id=2">hello</a>
+	<a href="hello/2/dat">hello</a>
 </body>
 </html>
