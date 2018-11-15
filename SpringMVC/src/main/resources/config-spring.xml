@@ -23,6 +23,13 @@
 	   			<ref bean="giamDoc2"/>
 	   		</list>		
    		</property>
+   		
+   		<property name="map">
+   			<map>
+   				<entry key="Map 1" value="Map 1 nhe"></entry>
+   				<entry key="Map 2" value-ref="giamDoc"></entry>
+   			</map>
+   		</property>
   </bean>
   
   <bean name="giamDoc" class="vn.com.spring.entity.GiamDoc">
