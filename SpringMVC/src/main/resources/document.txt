@@ -347,6 +347,22 @@ Note: data type date we are inject : "27-11-2018"
 		b3: Handle data from client send to server
 			<a href="hello/2/name=dat">hello</a>
 	
+===================================================================================================================
+
+													LESSION 15
+- Method POST only inject through item form		
+b1: Create form data	
+	<form action="hello" method="POST">
+		<p>UserName <input type="text" name="userName">
+		<input type="submit" value="SUBMIT">
+	</form>
+b2: Handler controller
+	@RequestMapping(value = "/hello", method = RequestMethod.POST)
+	public String hello(@RequestParam String userName, ModelMap modeMap) {
+		modeMap.addAttribute("id", userName);
+		return "hello";
+	}										
+
 
 
 
