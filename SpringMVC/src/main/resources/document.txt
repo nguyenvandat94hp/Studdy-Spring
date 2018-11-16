@@ -327,10 +327,26 @@ b2: receive param from client send to server
 			return "hello";
 		}	
 		
-Note: data type date we are inject : "27-11-2018"							
+Note: data type date we are inject : "27-11-2018"		
 
+===================================================================================================================
 
+													LESSION 14
 
+- @MaxtricVariable using for get value on url but safe more @RequestParam
+- Example:
+		b1: config enable-maxtrix-variable
+			<mvc:annotation-driven enable-matrix-variables="true"/> inside schema/mvc
+		b2: Handle controller
+			@RequestMapping(value = "/hello/{id}/{name}", method = RequestMethod.GET)
+			public String hello(@PathVariable("id") int id, @MatrixVariable("name") String name, ModelMap modeMap) {
+				modeMap.addAttribute("id", id);
+				modeMap.addAttribute("name", name);
+				return "hello";
+			}															
+		b3: Handle data from client send to server
+			<a href="hello/2/name=dat">hello</a>
+	
 
 
 
