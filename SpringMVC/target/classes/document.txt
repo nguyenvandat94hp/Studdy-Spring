@@ -58,4 +58,481 @@ bean always return 1 class
 	   		<constructor-arg ref="giamDoc"></constructor-arg>	
 	  	</bean>
 
+============================================================================================================================
+
+											LESSION 5
+1.
+	Guide use property is filde list in object with data type is primary:
 	
+		b1. create field list in object;
+			public class NhanVien {
+				...
+				private List<String> list;
+			}
+		b2: Assign field data in file bean:
+				<property name="list">
+			   		<list>
+			   			<value>AN</value>
+			   			<value>Cuong</value>
+			   			<value>AN</value>
+			   			<value>AN</value>
+			   		</list>		
+		   		</property>
+
+2.
+
+	Guide use property is filde list in object with data type is Object:
+	
+		b1: Create field list object in entity:
+			public class NhanVien {
+				....
+				private List<GiamDoc> giamDocs;
+			}
+		
+		b2: create the bean object of list data in file bean xml
+			 <bean name="giamDoc1" class="vn.com.spring.entity.GiamDoc">
+			 	 <constructor-arg value="Giam Doc 1"></constructor-arg>
+			  </bean>
+			  
+			  <bean name="giamDoc2" class="vn.com.spring.entity.GiamDoc">
+			 	 <constructor-arg value="Giam Doc 2"></constructor-arg>
+			  </bean>
+		  
+		b3: Assign field data in file bean:
+			<bean name="nhanVien" class="vn.com.spring.entity.NhanVien" init-method="" destroy-method="">   		
+			   		....
+			   		<property name="giamDocs">
+				   		<list>
+				   			<ref bean="giamDoc1"/>
+				   			<ref bean="giamDoc2"/>
+				   		</list>		
+			   		</property>
+			  </bean>
+
+==========================================================================================================
+
+											LESSION 6
+1.
+	Guide use assign field data is Map
+	
+		b1:Create new field data is map in entity:
+		public class NhanVien {
+			.....
+			private Map<String, Object> map;
+		}
+		
+		b2: Assign data for field map in xml
+		   		<property name="map">
+		   			<map>
+		   				<entry key="Map 1" value="Map 1 nhe"></entry>
+		   				<entry key="Map 2" value-ref="giamDoc"></entry>
+		   			</map>
+		   		</property>
+
+=========================================================================================================
+
+											LESSION 7
+											
+Autowrite is mechanism(cơ chế) auto inject field data have property same same. If have 1 field data coincidence(trùng hợp) 
+then it auto map and inject data.
+	b1: Create field data have form after
+	public class NhanVien {
+		....
+		private GiamDoc giamDoc;
+	}
+	
+	b2: Use autowrite as after:
+		<bean name="nhanVien" class="vn.com.spring.entity.NhanVien" autowire="byType"></bean>
+			<bean name="giamDoc" class="vn.com.spring.entity.GiamDoc">
+				<constructor-arg value="Giam Doc"></constructor-arg>
+		</bean>
+
+The same with byType
+
+==========================================================================================================
+
+											LESSION 8
+
+1. Why not need content website?
+	Using jsp for display item html.
+2. Vòng đời của file jsp?
+	Client request tới file jsp => Jsp translator sẽ biên dịch file jsp thành file java.servlet rồi biên dịch thành file .java
+	Lúc này file jsp mới chính thức chạy. Hàm get hàm post thông qua jspService
+3. Example 
+	3.1 Config servlet in file web.xml:
+		- Config DispatcherServlet:
+			<servlet-name>spring-mvc</servlet-name>
+			<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+			
+		- Config servlet-mapping:
+			<servlet-mapping>
+				<servlet-name>spring-mvc</servlet-name>
+				<url-pattern>/</url-pattern>
+			</servlet-mapping>
+
+		- Code file HomeController:
+				@Controller
+				public class HomeController {				
+					@RequestMapping("/")
+					public String index() {				
+						return "index.jsp";
+					}
+				}
+		- File index.jsp in folder webapp
+		
+===============================================================================================================
+
+											LESSION 9
+																				
+1. Divide folder container views display jsp
+	b1. 
+		- Create folder views in WE-INF
+		- Folder views container all file jsp display		
+	b2. 
+		Config loading file:
+			- Change file spring-mvn-servlet.xml by add new bean
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/WEB-INF/views/" />
+					<property name="suffix" value=".jsp" />
+				</bean>	
+			- Change data type return of file HomeController	:
+				@Controller
+				public class HomeController {		
+					@RequestMapping("/")
+					public String index() {		
+						return "index";
+					}
+				}
+
+===============================================================================================================
+
+											LESSION 10
+							
+1. Method controller return String or ModeAndView: 
+	- String return 1 view
+	- ModeAndView return 1 object + view corresponding
+2. Return data througth view
+	2.1: User ModeAndView
+		- When we are use ModeAndView we are need: 
+			.setViewName("name_view_it_return")
+			.addObject("name_use_on_view" ,Object_you_want_carried_away);
+		- return modeAndView
+		Example:
+			@RequestMapping("/")
+			public ModelAndView index() {
+				ModelAndView modelAndView = new ModelAndView();
+				modelAndView.setViewName("index");
+				String users ="User_Name";
+				modelAndView.addObject("tendangnhap", users);
+				return modelAndView;
+			}
+		In example view we are return is index. Object we are carried away is users. Variable use on 
+		view is "tendangnhap";
+		- Display variable on view: ${tendangnhap}
+		
+	2.2: User String method
+		- We are using Mode or ModeMap for send data on view
+		- return view
+		Example:
+			@RequestMapping("/home")
+			public String home(ModelMap modeMap) {
+				String users ="User_Method_String";
+				modeMap.addAttribute("tendangnhap", users);
+				int age = 18;
+				modeMap.addAttribute("ages", age);
+				return "index";
+			}
+		
+3. How to use variable server return view and hanlder data:
+	- We are use request.getAttribule("name_variable_server_return");	
+	- Example: 																					
+		  <h3>${tendangnhap}</h3>
+		  <%
+		  	int age = (Integer) request.getAttribute("ages");
+		  	int temp = 3;
+		  	int sum = age + temp;
+		  %>
+		  <%= sum %>							
+
+===================================================================================================================
+
+												LESSION 11
+
+Guide using display list data on page jsp
+
+b1.	add Dependency jstl:
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>	
+b2: Add list data in modelMap
+		@RequestMapping("/")
+		public String home(ModelMap modeMap) {
+			modeMap.addAttribute("listNhanVien", createListNhanVien());
+			return "index";
+		}
+		
+		private static List<NhanVien> createListNhanVien(){
+			List<NhanVien> listNhanVien = new ArrayList<NhanVien>();
+			listNhanVien.add(new NhanVien(0203, "Dat"));
+			listNhanVien.add(new NhanVien(2711, "Yen"));	
+			return listNhanVien;
+		}	
+b3: 
+	- In page jsp add jstl:
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>		
+	- import list: 
+		<%@ page import="java.util.List"%>
+	- import entity we are using:
+		<%@ page import="vn.com.spring.entity.NhanVien"%>
+b4: Using <c:forEach for display list data
+	<c:forEach var="listNhanVien" items="${listNhanVien}">
+		<tr>
+			<td><c:out value="${listNhanVien.getName()}" /></td>
+			<td><c:out value="${listNhanVien.getId()}" /></td>
+		</tr>
+		<br>
+	</c:forEach>
+
+==================================================================================================================
+
+													LESSION 12
+
+- @RequestParam is away we are get value of variable on url
+- 400 Bad Request in send data through url we are need using "?" and true data type
+
+Example send request param and receive request
+
+b1: send request param:
+	<a href="hello?id=2">hello</a>
+b2: receive param from client send to server
+		@RequestMapping(value = "/hello", method = RequestMethod.GET)
+		public String hello(@RequestParam(name = "id", required = true) int id, ModelMap modeMap) {
+			modeMap.addAttribute("id", id);
+			return "hello";
+		}
+
+==================================================================================================================
+
+													LESSION 13
+- @PathVariable is away inject data through url but safer
+- Example:
+	b1: <a href="hello/2/dat">hello</a>
+	b2:
+		@RequestMapping(value = "/hello/{id}/{name}", method = RequestMethod.GET)
+		public String hello(@PathVariable("id") int id, @PathVariable("name") String name, ModelMap modeMap) {
+			modeMap.addAttribute("id", id);
+			modeMap.addAttribute("name", name);
+			return "hello";
+		}	
+		
+Note: data type date we are inject : "27-11-2018"		
+
+===================================================================================================================
+
+													LESSION 14
+
+- @MaxtricVariable using for get value on url but safe more @RequestParam
+- Example:
+		b1: config enable-maxtrix-variable
+			<mvc:annotation-driven enable-matrix-variables="true"/> inside schema/mvc
+		b2: Handle controller
+			@RequestMapping(value = "/hello/{id}/{name}", method = RequestMethod.GET)
+			public String hello(@PathVariable("id") int id, @MatrixVariable("name") String name, ModelMap modeMap) {
+				modeMap.addAttribute("id", id);
+				modeMap.addAttribute("name", name);
+				return "hello";
+			}															
+		b3: Handle data from client send to server
+			<a href="hello/2/name=dat">hello</a>
+	
+===================================================================================================================
+
+													LESSION 15
+													
+- Method POST only inject through item form		
+b1: Create form data	
+	<form action="hello" method="POST">
+		<p>UserName <input type="text" name="userName">
+		<input type="submit" value="SUBMIT">
+	</form>
+b2: Handler controller
+	@RequestMapping(value = "/hello", method = RequestMethod.POST)
+	public String hello(@RequestParam String userName, ModelMap modeMap) {
+		modeMap.addAttribute("id", userName);
+		return "hello";
+	}	
+	
+===================================================================================================================
+
+													LESSION 16
+
+- @ModelAttribute we are using @ModelAttribute when mutil variable need inject from client to server.
+- Example:
+b1: view 
+									
+	<form action="hello" method="POST">
+		<p>id <input type="text" name="id">
+		<p>name <input type="text" name="name">
+		<p>location <input type="text" name="location">
+		<p>giamDoc <input type="text" name="giamDoc">
+		<input type="submit" value="SUBMIT">
+	</form>
+	
+b2: Handler Controller
+
+	@RequestMapping(value = "/hello", method = RequestMethod.POST)
+	public String hello(@ModelAttribute NhanVien nhanVien, ModelMap modeMap) {
+		modeMap.addAttribute("nhanVien", nhanVien);
+		return "hello";
+	}
+b3: Handler view display:
+	<h1>Spring MVC Hello World!</h1>
+	  <h3>${nhanVien.id}</h3>
+	  <h3>${nhanVien.name}</h3>
+	  <h3>${nhanVien.location}</h3>
+	  <h3>${nhanVien.giamDoc.chucVu}</h3>
+
+=>>Note:Mapping through name entity
+
+
+
+===================================================================================================================
+
+													LESSION 17
+													
+1. Connect SqlServer with JDBC
+b1. Using hibernate for connect to DB we are need import denpendency:
+
+	- hibernate-core > 5.xx		
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>5.2.10.Final</version>
+			</dependency>
+			
+	- spring-tx for create transaction (@Transaction)
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>5.1.1.RELEASE</version>
+		</dependency>
+	
+	- orm for mapping class with table in DB (for use @Entity, @Id ...)
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.0.2.RELEASE</version>
+		</dependency>
+		
+b2: config dataSource, sessionFactory, transactionManager
+	
+	- dataSource: using with data(example: sqlServer)
+		<bean id="dataSource"
+			class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+			<property name="driverClassName"
+				value="net.sourceforge.jtds.jdbc.Driver" />
+			<property name="url"
+				value="jdbc:jtds:sqlserver://localhost:1433/SaleManager2;instance=SQLEXPRESS" />
+			<property name="username" value="sa" />
+			<property name="password" value="sa" />
+		</bean>
+		
+	- sessionFactory using with entity in Java-Spring. 
+		<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="packagesToScan" value="vn.com.spring.entity" />
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</prop>
+					<prop key="hibernate.show_sql">true</prop>
+				</props>
+			</property>
+		</bean>
+		
+	- transactionManager 
+		<bean id="transactionManager"
+			class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+
+	- <tx:annotation-driven
+		transaction-manager="transactionManager" />
+		
+b3: Create entity mapping with class in DB.
+		@Entity(name="NHANVIEN")
+		@Table
+		public class NhanVien {
+			
+			@Id
+			@GeneratedValue(strategy=GenerationType.IDENTITY)
+			@Column(name="MANHANVIEN")
+			private int maNhanVien;
+			
+			@Column(name="HOTEN")
+			private String hoTen;
+			
+			@Column(name="EMAIL")
+			private String email;
+			
+			@Column(name="MATKHAU")
+			private String passWord;	
+		}
+	
+b4. Using SessionFactory for connect DB and excute query.
+	@Autowired
+	SessionFactory sessionFactory;
+
+b5. Manipulation with query:
+
+	@Transactional
+	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+	public String index(ModelMap modelMap) {
+		String insertNV = "INSERT INTO NHANVIEN(EMAIL,HOTEN,MATKHAU) values('Cardinal', 'Tom B. Erichsen', 'Skagen 21')";
+		String query = "from NHANVIEN";
+		Session session = sessionFactory.getCurrentSession();
+		for(int i = 0; i< 1; i++) {
+			session.createNativeQuery(insertNV).executeUpdate();
+		}
+		
+		List<NhanVien> list = session.createQuery(query).getResultList();
+		modelMap.addAttribute("lists", list);
+		return "index";
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+													
+					
+
+
