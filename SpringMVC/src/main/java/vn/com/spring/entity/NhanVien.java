@@ -1,74 +1,73 @@
 package vn.com.spring.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity(name="NHANVIEN")
+@Table
 public class NhanVien {
-	private int id;
-	private String name;
-	private String location;
-	private GiamDoc giamDoc;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="MANHANVIEN")
+	private int maNhanVien;
+	
+	@Column(name="HOTEN")
+	private String hoTen;
+	
+	@Column(name="EMAIL")
+	private String email;
+	
+	@Column(name="MATKHAU")
+	private String passWord;
 
-	public NhanVien(int id, String name, GiamDoc giamDoc) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.giamDoc = giamDoc;
-	}
-
-	public NhanVien(GiamDoc giamDoc) {
-		super();
-		this.giamDoc = giamDoc;
-	}
-
-	public GiamDoc getGiamDoc() {
-		return giamDoc;
-	}
-
-	public void setGiamDoc(GiamDoc giamDoc) {
-		this.giamDoc = giamDoc;
-	}
 
 	public NhanVien() {
 		super();
 	}
 
-	public NhanVien(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
+
+	public int getMaNhanVien() {
+		return maNhanVien;
 	}
 
-	public NhanVien(int id, String name, String location) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.location = location;
+
+	public void setMaNhanVien(int maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
 
-	public String getInfomationEmployee() {
-		return id + name + location + giamDoc.toString();
+
+	public String getHoTen() {
+		return hoTen;
 	}
 
-	public int getId() {
-		return id;
+
+	public void setHoTen(String hoTen) {
+		this.hoTen = hoTen;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+
+	public String getEmail() {
+		return email;
 	}
 
-	public String getName() {
-		return name;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	public String getPassWord() {
+		return passWord;
 	}
 
-	public String getLocation() {
-		return location;
-	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
 
 }
