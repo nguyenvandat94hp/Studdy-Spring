@@ -350,6 +350,7 @@ Note: data type date we are inject : "27-11-2018"
 ===================================================================================================================
 
 													LESSION 15
+													
 - Method POST only inject through item form		
 b1: Create form data	
 	<form action="hello" method="POST">
@@ -361,10 +362,39 @@ b2: Handler controller
 	public String hello(@RequestParam String userName, ModelMap modeMap) {
 		modeMap.addAttribute("id", userName);
 		return "hello";
-	}										
+	}	
+	
+===================================================================================================================
 
+													LESSION 16
 
+- @ModelAttribute we are using @ModelAttribute when mutil variable need inject from client to server.
+- Example:
+b1: view 
+									
+	<form action="hello" method="POST">
+		<p>id <input type="text" name="id">
+		<p>name <input type="text" name="name">
+		<p>location <input type="text" name="location">
+		<p>giamDoc <input type="text" name="giamDoc">
+		<input type="submit" value="SUBMIT">
+	</form>
+	
+b2: Handler Controller
 
+	@RequestMapping(value = "/hello", method = RequestMethod.POST)
+	public String hello(@ModelAttribute NhanVien nhanVien, ModelMap modeMap) {
+		modeMap.addAttribute("nhanVien", nhanVien);
+		return "hello";
+	}
+b3: Handler view display:
+	<h1>Spring MVC Hello World!</h1>
+	  <h3>${nhanVien.id}</h3>
+	  <h3>${nhanVien.name}</h3>
+	  <h3>${nhanVien.location}</h3>
+	  <h3>${nhanVien.giamDoc.chucVu}</h3>
+
+=>>Note:Mapping through name entity
 
 
 
