@@ -11,6 +11,9 @@
 </head>
 <body>
 	<h1>Spring MVC Index World!</h1>
-	<a href="hello/2/name=dat">hello</a>
+	<form action="hello" method="POST">
+		<p>UserName <input type="text" name="userName">
+		<input type="submit" value="SUBMIT">
+	</form>
 </body>
 </html>
