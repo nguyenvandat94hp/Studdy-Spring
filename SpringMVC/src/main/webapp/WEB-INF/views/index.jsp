@@ -12,7 +12,10 @@
 <body>
 	<h1>Spring MVC Index World!</h1>
 	<form action="hello" method="POST">
-		<p>UserName <input type="text" name="userName">
+		<p>id <input type="text" name="id">
+		<p>name <input type="text" name="name">
+		<p>location <input type="text" name="location">
+		<p>giamDoc <input type="text" name="giamDoc">
 		<input type="submit" value="SUBMIT">
 	</form>
 </body>
