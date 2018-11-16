@@ -18,5 +18,15 @@
 		<p>giamDoc <input type="text" name="giamDoc">
 		<input type="submit" value="SUBMIT">
 	</form>
+	
+	<c:forEach var="listNhanVien" items="${lists}">
+		<tr>
+			<td><c:out value="${listNhanVien.getMaNhanVien()}" /></td>
+			<td><c:out value="${listNhanVien.getHoTen()}" /></td>
+			<td><c:out value="${listNhanVien.getEmail()}" /></td>
+			<td><c:out value="${listNhanVien.passWord}" /></td>
+		</tr>
+		<br>
+	</c:forEach>
 </body>
 </html>
