@@ -398,14 +398,111 @@ b3: Handler view display:
 
 
 
+===================================================================================================================
 
+													LESSION 17
+													
+1. Connect SqlServer with JDBC
+b1. Using hibernate for connect to DB we are need import denpendency:
 
+	- hibernate-core > 5.xx		
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>5.2.10.Final</version>
+			</dependency>
+			
+	- spring-tx for create transaction (@Transaction)
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>5.1.1.RELEASE</version>
+		</dependency>
+	
+	- orm for mapping class with table in DB (for use @Entity, @Id ...)
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.0.2.RELEASE</version>
+		</dependency>
+		
+b2: config dataSource, sessionFactory, transactionManager
+	
+	- dataSource: using with data(example: sqlServer)
+		<bean id="dataSource"
+			class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+			<property name="driverClassName"
+				value="net.sourceforge.jtds.jdbc.Driver" />
+			<property name="url"
+				value="jdbc:jtds:sqlserver://localhost:1433/SaleManager2;instance=SQLEXPRESS" />
+			<property name="username" value="sa" />
+			<property name="password" value="sa" />
+		</bean>
+		
+	- sessionFactory using with entity in Java-Spring. 
+		<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="packagesToScan" value="vn.com.spring.entity" />
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</prop>
+					<prop key="hibernate.show_sql">true</prop>
+				</props>
+			</property>
+		</bean>
+		
+	- transactionManager 
+		<bean id="transactionManager"
+			class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
 
+	- <tx:annotation-driven
+		transaction-manager="transactionManager" />
+		
+b3: Create entity mapping with class in DB.
+		@Entity(name="NHANVIEN")
+		@Table
+		public class NhanVien {
+			
+			@Id
+			@GeneratedValue(strategy=GenerationType.IDENTITY)
+			@Column(name="MANHANVIEN")
+			private int maNhanVien;
+			
+			@Column(name="HOTEN")
+			private String hoTen;
+			
+			@Column(name="EMAIL")
+			private String email;
+			
+			@Column(name="MATKHAU")
+			private String passWord;	
+		}
+	
+b4. Using SessionFactory for connect DB and excute query.
+	@Autowired
+	SessionFactory sessionFactory;
 
+b5. Manipulation with query:
 
-
-
-
+	@Transactional
+	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+	public String index(ModelMap modelMap) {
+		String insertNV = "INSERT INTO NHANVIEN(EMAIL,HOTEN,MATKHAU) values('Cardinal', 'Tom B. Erichsen', 'Skagen 21')";
+		String query = "from NHANVIEN";
+		Session session = sessionFactory.getCurrentSession();
+		for(int i = 0; i< 1; i++) {
+			session.createNativeQuery(insertNV).executeUpdate();
+		}
+		
+		List<NhanVien> list = session.createQuery(query).getResultList();
+		modelMap.addAttribute("lists", list);
+		return "index";
+	}
 
 
 
