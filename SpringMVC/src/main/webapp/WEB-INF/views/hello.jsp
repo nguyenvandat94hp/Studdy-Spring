@@ -8,8 +8,10 @@
 </head>
 <body>
   <h1>Spring MVC Hello World!</h1>
-  <h3>${id}</h3>
-  <h3>${name}</h3>
+  <h3>${nhanVien.id}</h3>
+  <h3>${nhanVien.name}</h3>
+  <h3>${nhanVien.location}</h3>
+  <h3>${nhanVien.giamDoc.chucVu}</h3>
   <a href="index">hello</a>
 </body>
 </html>
