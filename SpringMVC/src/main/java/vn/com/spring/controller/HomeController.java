@@ -1,10 +1,6 @@
 package vn.com.spring.controller;
 
-import java.util.List;
-
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,23 +18,28 @@ public class HomeController {
 	SessionFactory sessionFactory;
 
 	@Transactional
-	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/index" })
 	public String index(ModelMap modelMap) {
-		String insertNV = "INSERT INTO NHANVIEN(EMAIL,HOTEN,MATKHAU) values('Cardinal', 'Tom B. Erichsen', 'Skagen 21')";
-		String query = "from NHANVIEN";
+	/*	
+		 * String insertNV =
+		 * "INSERT INTO NHANVIEN(DIACHI,HOTEN,MATKHAU) values('Cardinal', 'Tom B. Erichsen', 'Skagen 21')"
+		 * ;
+		 
+		String query = "FROM NhanVien";
 		Session session = sessionFactory.getCurrentSession();
-		for(int i = 0; i< 1; i++) {
-			session.createNativeQuery(insertNV).executeUpdate();
-		}
 		
-		List<NhanVien> list = session.createQuery(query).getResultList();
-		modelMap.addAttribute("lists", list);
-		return "index";
+		 * for (int i = 0; i < 2; i++) {
+		 * session.createNativeQuery(insertNV).executeUpdate(); }
+		 
+		List<NhanVien> list = (List<NhanVien>)session.createQuery(query).list();
+		modelMap.addAttribute("lists", list);*/
+
+		return "login";
 	}
 
 	@RequestMapping(value = "/hello", method = RequestMethod.POST)
 	public String hello(@ModelAttribute NhanVien nhanVien, ModelMap modeMap) {
 		modeMap.addAttribute("nhanVien", nhanVien);
-		return "hello";
+		return "login";
 	}
 }

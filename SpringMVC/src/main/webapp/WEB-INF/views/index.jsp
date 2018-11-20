@@ -12,21 +12,25 @@
 <body>
 	<h1>Spring MVC Index World!</h1>
 	<form action="hello" method="POST">
-		<p>id <input type="text" name="id">
-		<p>name <input type="text" name="name">
-		<p>location <input type="text" name="location">
-		<p>giamDoc <input type="text" name="giamDoc">
-		<input type="submit" value="SUBMIT">
+		<p>
+			id <input type="text" name="id">
+		<p>
+			name <input type="text" name="name">
+		<p>
+			location <input type="text" name="location">
+		<p>
+			giamDoc <input type="text" name="giamDoc"> <input
+				type="submit" value="SUBMIT">
 	</form>
-	
-	<c:forEach var="listNhanVien" items="${lists}">
-		<tr>
-			<td><c:out value="${listNhanVien.getMaNhanVien()}" /></td>
-			<td><c:out value="${listNhanVien.getHoTen()}" /></td>
-			<td><c:out value="${listNhanVien.getEmail()}" /></td>
-			<td><c:out value="${listNhanVien.passWord}" /></td>
-		</tr>
-		<br>
-	</c:forEach>
+
+	<ul>
+		<c:forEach items="${lists}" var="list">
+			<li>${list.maNhanVien}</li>
+			<li>${list.tenDangNhap}</li>
+			<li>${list.diaChi}</li>
+			<li>${list.matKhau}</li>
+			<br>
+		</c:forEach>
+	</ul>
 </body>
 </html>
