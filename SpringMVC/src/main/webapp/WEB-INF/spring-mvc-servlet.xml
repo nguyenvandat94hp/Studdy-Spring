@@ -14,7 +14,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<import resource="classpath:config-spring.xml" />
-	<context:component-scan base-package="vn.com.spring.controller" />
+	<context:component-scan base-package="vn.com.spring.controllers" />
+	<context:component-scan base-package="vn.com.spring.dao" />
+	<context:component-scan base-package="vn.com.spring.services" />
 	<mvc:annotation-driven enable-matrix-variables="true"/>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
